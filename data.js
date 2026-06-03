@@ -294,11 +294,11 @@ const PRODUCTOS = [
       },
       {
         id: 36,
-        nombre: '',
-        precio: 1,
-        categoria: '',
-        imagen: '',
-        link: ''
+        nombre: 'Perfume Versace Eros Hombre 100 ml Eau de parfum',
+        precio: 600000,
+        categoria: 'unknown',
+        imagen: 'https://media.falabella.com/falabellaCO/9761893_2/w=1200,h=1200,fit=pad',
+        link: 'https://www.falabella.com.co/falabella-co/product/9761893/Perfume-Versace-Eros-Hombre-100-ml-EDP/9761893'
       },
       {
         id: 37,
