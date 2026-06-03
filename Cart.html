@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mi Carrito Universal</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+
+  <script src="./data.js"></script>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+    }
+
+    body {
+      background-color: #f6f6f6;
+      padding: 1rem;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1000px;
+      margin: auto;
+      margin-bottom: 2rem;
+      gap: 1rem;
+    }
+
+    h1 {
+      font-size: 1.8rem;
+    }
+
+    select {
+      padding: 0.5rem 0.75rem;
+      border-radius: 0.5rem;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+
+    .cart-container {
+      max-width: 1000px;
+      margin: auto;
+      background: white;
+      border-radius: 1rem;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      padding: 1.5rem;
+    }
+
+    .cart-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid #e5e5e5;
+      transition: 0.2s ease;
+      cursor: pointer;
+    }
+
+    .cart-item:last-child {
+      border-bottom: none;
+    }
+
+    .cart-item:hover {
+      background: #fafafa;
+      transform: translateY(-2px);
+    }
+
+    .item-image {
+      width: 140px;
+      height: 140px;
+      border-radius: 0.75rem;
+      object-fit: contain;
+      background-color: #f3f3f3;
+      padding: 8px;
+      flex-shrink: 0;
+    }
+
+    .item-details {
+      flex: 1;
+    }
+
+    .item-title {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 0.2rem;
+      line-height: 1.3;
+    }
+
+    .item-source {
+      font-size: 0.85rem;
+      color: #777;
+      margin-bottom: 0.3rem;
+      text-transform: capitalize;
+    }
+
+    .item-price {
+      font-size: 1rem;
+      color: #222;
+      font-weight: 600;
+    }
+
+    .checkout {
+      margin-top: 2rem;
+      border-top: 1px solid #e5e5e5;
+      padding-top: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .total {
+      font-size: 1.3rem;
+      font-weight: bold;
+      text-align: right;
+    }
+
+    .checkout-btn {
+      align-self: flex-end;
+      padding: 0.75rem 1.5rem;
+      font-size: 1rem;
+      border: none;
+      border-radius: 0.75rem;
+      background: #000;
+      color: white;
+      cursor: pointer;
+      transition: 0.2s ease;
+    }
+
+    .checkout-btn:hover {
+      background: #333;
+    }
+
+@media (min-width: 900px) {
+
+  .cart-container {
+    max-width: 1200px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .cart-item {
+    flex-direction: column;
+    align-items: flex-start;
+    border: 1px solid #eee;
+    border-radius: 1rem;
+    padding: 1rem;
+    margin-bottom: 0;
+  }
+
+  .item-image {
+    width: 100%;
+    height: 180px;
+  }
+
+  .checkout {
+    grid-column: 1 / -1; /* ocupa todo el ancho */
+  }
+
+}
+
+    @media (max-width: 600px) {
+      header {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .cart-item {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .item-image {
+        margin: 0 auto;
+        width: 100%;
+        max-width: 320px;
+        height: 320px;
+        object-fit: contain;
+        background-color: #f3f3f3;
+        padding: 12px;
+      }
+
+      .total,
+      .checkout-btn {
+        width: 100%;
+        text-align: center;
+      }
+
+      .checkout-btn {
+        align-self: stretch;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h1>Mi Carrito Universal</h1>
+    <select id="categoryFilter">
+      <option value="all">Todos</option>
+      <option value="glauser">Glauser</option>
+      <option value="mercadolibre">MercadoLibre</option>
+      <option value="amazon">Amazon</option>
+      <option value="apple">Apple</option>
+      <option value="adidas">Adidas</option>
+      <option value="nike">Nike</option>
+      <option value="unknown">Desconocido</option>
+    </select>
+  </header>
+
+  <div class="cart-container" id="cart">
+    <div class="checkout">
+      <div class="total" id="totalAmount">Total: $0</div>
+      <button class="checkout-btn">Ir a comprar</button>
+    </div>
+  </div>
+
+  <script>
+    const cart = document.getElementById('cart');
+    const filter = document.getElementById('categoryFilter');
+    const totalDisplay = document.getElementById('totalAmount');
+    const checkoutSection = document.querySelector('.checkout');
+
+    const productos = PRODUCTOS;
+
+    function formatCurrency(value) {
+      return new Intl.NumberFormat('es-CO', {
+        style: 'currency',
+        currency: 'COP'
+      }).format(value);
+    }
+
+    function createCartItem(product) {
+      const item = document.createElement('div');
+      item.className = 'cart-item';
+      item.dataset.source = product.categoria;
+      item.dataset.price = product.precio;
+      item.setAttribute('role', 'link');
+      item.tabIndex = 0;
+
+      item.innerHTML = `
+        <img src="${product.imagen}" alt="${product.nombre}" class="item-image">
+        <div class="item-details">
+          <div class="item-title">${product.nombre}</div>
+          <div class="item-source">${product.categoria}</div>
+          <div class="item-price">${formatCurrency(product.precio)}</div>
+        </div>
+      `;
+
+      item.addEventListener('click', () => {
+        window.open(product.link, '_blank');
+      });
+
+      item.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+          window.open(product.link, '_blank');
+        }
+      });
+
+      return item;
+    }
+
+    function renderCart() {
+      const fragment = document.createDocumentFragment();
+
+      productos.forEach(product => {
+        fragment.appendChild(createCartItem(product));
+      });
+
+      cart.insertBefore(fragment, checkoutSection);
+    }
+
+    function updateCartDisplay() {
+      const items = document.querySelectorAll('.cart-item');
+      const selected = filter.value;
+      let total = 0;
+
+      items.forEach(item => {
+        const match = selected === 'all' || item.dataset.source === selected;
+        item.style.display = match ? 'flex' : 'none';
+
+        if (match) {
+          total += Number(item.dataset.price);
+        }
+      });
+
+      totalDisplay.textContent = `Total: ${formatCurrency(total)}`;
+    }
+
+    filter.addEventListener('change', updateCartDisplay);
+
+    window.addEventListener('DOMContentLoaded', () => {
+      renderCart();
+      updateCartDisplay();
+    });
+  </script>
+
+</body>
+
+</html>
