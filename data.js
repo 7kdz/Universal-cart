@@ -101,14 +101,6 @@ const PRODUCTOS = [
         link: 'https://guayosbogotop.com/products/jm-top-flex-futsal-6'
     },
     {
-        id: 12,
-        nombre: 'Futsal Mercurial Superfly 9',
-        precio: 220000,
-        categoria: 'unknown',
-        imagen: 'https://guayosbogotop.com/cdn/shop/files/IMG_5778.jpg?v=1750111696&width=823',
-        link: 'https://guayosbogotop.com/products/futsala-mercurial-superfly-9-gris'
-    },
-    {
         id: 13,
         nombre: 'Pesas Tobilleras Y Muñequeras 6kg Fitnics Ajustables Set X2 - Negro (X2 Sets)',
         precio: 68000,
