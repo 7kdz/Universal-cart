@@ -12,6 +12,14 @@ const PRODUCTOS = [
       }
     
     */
+      {
+        id: 0,
+        nombre: 'Yamaha XTZ 250',
+        precio: 26000000,
+        categoria: 'unknown',
+        imagen: 'https://www.incolmotos-yamaha.com.co/wp-content/uploads/2018/03/xtz250_negra.png',
+        link: 'https://www.incolmotos-yamaha.com.co/vehiculo/xtz250a/2266/'
+      },
     {
         id: 1,
         nombre: 'Honda XR 190L',
