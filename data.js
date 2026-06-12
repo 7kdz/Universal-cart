@@ -12,14 +12,6 @@ const PRODUCTOS = [
       }
     
     */
-      {
-        id: 0,
-        nombre: 'Yamaha XTZ 250',
-        precio: 26000000,
-        categoria: 'unknown',
-        imagen: 'https://www.incolmotos-yamaha.com.co/wp-content/uploads/2018/03/xtz250_negra.png',
-        link: 'https://www.incolmotos-yamaha.com.co/vehiculo/xtz250a/2266/'
-      },
     {
         id: 1,
         nombre: 'Honda XR 190L',
@@ -107,6 +99,14 @@ const PRODUCTOS = [
         categoria: 'unknown',
         imagen: 'https://guayosbogotop.com/cdn/shop/files/04a772c7.png?v=1767473728&width=823',
         link: 'https://guayosbogotop.com/products/jm-top-flex-futsal-6'
+    },
+    {
+        id: 12,
+        nombre: 'Futsal Mercurial Superfly 9',
+        precio: 220000,
+        categoria: 'unknown',
+        imagen: 'https://guayosbogotop.com/cdn/shop/files/IMG_5778.jpg?v=1750111696&width=823',
+        link: 'https://guayosbogotop.com/products/futsala-mercurial-superfly-9-gris'
     },
     {
         id: 13,
@@ -254,30 +254,6 @@ const PRODUCTOS = [
       },
       {
         id: 31,
-        nombre: 'Nike Pegasus 42',
-        precio: 800000,
-        categoria: 'nike',
-        imagen: 'https://nikeco.vtexassets.com/arquivos/ids/1023300-1600-auto?v=639110877752870000&width=1600&height=auto&aspect=true',
-        link: 'https://www.nike.com.co/nike-pegasus-42-calzado-de-correr-para-hombre-ib1873-001-tu6/p'
-      },
-      {
-        id: 32,
-        nombre: 'Nike Structure 26',
-        precio: 800000,
-        categoria: 'nike',
-        imagen: 'https://nikeco.vtexassets.com/arquivos/ids/1055138-1200-auto?v=639135964269930000&width=1200&height=auto&aspect=true',
-        link: 'https://www.nike.com.co/nike-structure-26-calzado-correr-hombre-hj1102-115-tu6/p'
-      },
-      {
-        id: 33,
-        nombre: 'Nike Structure Plus',
-        precio: 950000,
-        categoria: 'nike',
-        imagen: 'https://nikeco.vtexassets.com/arquivos/ids/949079-1200-auto?v=639029669669000000&width=1200&height=auto&aspect=true',
-        link: 'https://www.nike.com.co/nike-structure-plus-hq3048-001-tp6/p?skuId=82357'
-      },
-      {
-        id: 34,
         nombre: 'Licra Adidas Cuello Bajo x 1und',
         precio: 80000,
         categoria: 'unknown',
@@ -285,7 +261,7 @@ const PRODUCTOS = [
         link: 'https://guayosbogotop.com/products/licra_2'
       },
       {
-        id: 35,
+        id: 32,
         nombre: 'Licra Nike Cuello Bajo x 1und',
         precio: 80000,
         categoria: 'unknown',
@@ -293,31 +269,31 @@ const PRODUCTOS = [
         link: 'https://guayosbogotop.com/products/licra_5'
       },
       {
+        id: 33,
+        nombre: '',
+        precio: 1,
+        categoria: '',
+        imagen: '',
+        link: ''
+      },
+      {
+        id: 34,
+        nombre: '',
+        precio: 1,
+        categoria: '',
+        imagen: '',
+        link: ''
+      },
+      {
+        id: 35,
+        nombre: '',
+        precio: 1,
+        categoria: '',
+        imagen: '',
+        link: ''
+      },
+      {
         id: 36,
-        nombre: 'Perfume Versace Eros Hombre 100 ml Eau de parfum',
-        precio: 600000,
-        categoria: 'unknown',
-        imagen: 'https://media.falabella.com/falabellaCO/9761893_2/w=1200,h=1200,fit=pad',
-        link: 'https://www.falabella.com.co/falabella-co/product/9761893/Perfume-Versace-Eros-Hombre-100-ml-EDP/9761893'
-      },
-      {
-        id: 37,
-        nombre: '',
-        precio: 1,
-        categoria: '',
-        imagen: '',
-        link: ''
-      },
-      {
-        id: 38,
-        nombre: '',
-        precio: 1,
-        categoria: '',
-        imagen: '',
-        link: ''
-      },
-      {
-        id: 39,
         nombre: '',
         precio: 1,
         categoria: '',
