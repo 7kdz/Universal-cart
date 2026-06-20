@@ -54,38 +54,6 @@ const PRODUCTOS = [
     },
     {
         id: 6,
-        nombre: 'Gafas De Sol Sutro Lite Oakley Oo9463946313 Color Gris',
-        precio: 776000,
-        categoria: 'mercadolibre',
-        imagen: 'https://http2.mlstatic.com/D_NQ_NP_2X_623752-MLA95665027449_102025-F.webp',
-        link: 'https://www.mercadolibre.com.co/p/MCO21466616?pdp_filters=item_id%3AMCO1426948541#polycard_client=cart_list&wid=MCO1426948541&sid=cart'
-    },
-    {
-        id: 7,
-        nombre: 'Gafas De Sol Sutro Lite Oakley Oo9471 Hombre Originales Color Gris',
-        precio: 972000,
-        categoria: 'mercadolibre',
-        imagen: 'https://http2.mlstatic.com/D_NQ_NP_2X_834753-MLA99987822809_112025-F.webp',
-        link: 'https://www.mercadolibre.com.co/gafas-de-sol-oakley-oo9471-hombre-originales-color-gris/p/MCO22593591?pdp_filters=item_id%3AMCO2162323552&quantity=2&offer_type=BEST_INSTALLMENTS'
-    },
-      {
-        id: 8,
-        nombre: 'Maleta Deportiva Linear Mediana',
-        precio: 180000,
-        categoria: 'adidas',
-        imagen: 'https://assets.adidas.com/images/h_2000,f_auto,q_auto,fl_lossy,c_fill,g_auto/8465ee32fd7e40d49877ab81f5f738f3_9366/Maleta_Deportiva_Linear_Mediana_Negro_JD9555_01_00_standard.jpg',
-        link: 'https://www.adidas.co/maleta-deportiva-linear-mediana/JD9555.html?pr=product_rr&slot=4&rec=ds'
-      },
-    {
-        id: 9,
-        nombre: 'Guayos F50 League Lamine Yamal Sin Cordones Terreno Firme',
-        precio: 550000,
-        categoria: 'adidas',
-        imagen: 'https://assets.adidas.com/images/h_2000,f_auto,q_auto,fl_lossy,c_fill,g_auto/a0827a873eac4b80bbe3eb2e83bbfe34_9366/Guayos_F50_League_Lamine_Yamal_Sin_Cordones_Terreno_Firme-Multiterreno_Blanco_KJ3781_22_model.jpg',
-        link: 'https://www.adidas.co/guayos-f50-league-lamine-yamal-sin-cordones-terreno-firme-multiterreno/KJ3781.html?forceSelSize=KJ3781_640'
-    },
-    {
-        id: 10,
         nombre: 'Guayos F50 Laceless Morado /Verde',
         precio: 260000,
         categoria: 'unknown',
@@ -93,7 +61,7 @@ const PRODUCTOS = [
         link: 'https://guayosbogotop.com/products/guayos-12'
     },
     {
-        id: 11,
+        id: 7,
         nombre: 'Guayos F50 Lamine Yamal Rosado Laceless',
         precio: 260000,
         categoria: 'unknown',
@@ -101,7 +69,7 @@ const PRODUCTOS = [
         link: 'https://guayosbogotop.com/products/guayos-lamine-yamal-editions'
     },
     {
-        id: 12,
+        id: 8,
         nombre: 'Joma Rebound Blanco Plata',
         precio: 220000,
         categoria: 'unknown',
@@ -109,7 +77,7 @@ const PRODUCTOS = [
         link: 'https://guayosbogotop.com/products/joma-rebound-blanco-plata'
     },
     {
-        id: 13,
+        id: 9,
         nombre: 'Joma Regate Rebound Blanco Negro',
         precio: 220000,
         categoria: 'unknown',
@@ -117,7 +85,7 @@ const PRODUCTOS = [
         link: 'https://guayosbogotop.com/products/jm-top-flex-futsal-6'
     },
       {
-        id: 14,
+        id: 10,
         nombre: 'Licra Adidas Cuello Bajo x 1und',
         precio: 80000,
         categoria: 'unknown',
@@ -125,7 +93,7 @@ const PRODUCTOS = [
         link: 'https://guayosbogotop.com/products/licra_2'
       },
       {
-        id: 15,
+        id: 11,
         nombre: 'Licra Nike Cuello Bajo x 1und',
         precio: 80000,
         categoria: 'unknown',
@@ -133,7 +101,7 @@ const PRODUCTOS = [
         link: 'https://guayosbogotop.com/products/licra_5'
       },
     {
-        id: 16,
+        id: 12,
         nombre: 'Pesas Tobilleras Y Muñequeras 6kg Fitnics Ajustables Set X2 - Negro (X2 Sets)',
         precio: 68000,
         categoria: 'mercadolibre',
@@ -141,23 +109,15 @@ const PRODUCTOS = [
         link: 'https://www.mercadolibre.com.co/pesas-tobilleras-y-munequeras-6kg-fitnics-ajustables-set-x2-negro/p/MCO62162919?pdp_filters=item_id%3AMCO1736913431#polycard_client=offers&deal_print_id=7a344ad5-eddc-4f1e-af07-c1bdc6b25de9&position=5&tracking_id=533eb999-ec6a-4d57-b099-87a28a393abb&wid=MCO1736913431&sid=offers'
     },
     {
-        id: 17,
+        id: 13,
         nombre: 'Corrector Postura Lumbar Iman Espalda Magnetico 4 Varillas',
         precio: 77000,
         categoria: 'mercadolibre',
         imagen: 'https://http2.mlstatic.com/D_NQ_NP_2X_891927-MCO89502627088_082025-F.webp',
         link: 'https://articulo.mercadolibre.com.co/MCO-860609691-corrector-postura-lumbar-iman-espalda-magnetico-4-varillas-_JM?variation=174205758252#polycard_client=cart_list'
     },
-    {
-        id: 18,
-        nombre: 'Mega Gainer 5lbs Hipercalorica Vainilla',
-        precio: 136000,
-        categoria: 'mercadolibre',
-        imagen: 'https://http2.mlstatic.com/D_NQ_NP_2X_856384-MCO92681536017_092025-F.webp',
-        link: 'https://www.mercadolibre.com.co/mega-gainer--5lbs--hipercalorica-gmn/up/MCOU3230069220#polycard_client=search-desktop&search_layout=grid&position=3&type=product&tracking_id=0b7143ea-fc46-4894-8473-452af4cde90e&wid=MCO1598153159&sid=search'
-    },
-    {
-        id: 19,
+        {
+        id: 14,
         nombre: 'Creatina Muscletech',
         precio: 140000,
         categoria: 'mercadolibre',
@@ -165,7 +125,15 @@ const PRODUCTOS = [
         link: 'https://www.mercadolibre.com.co/creatina-muscletech-80-servicios-crecimiento-muscular-fuerza/p/MCO20596216#polycard_client=offers&deal_print_id=e3578848-85ed-4f8d-8c33-b15c373631f3&tracking_id=311f3038-97d2-4bff-90d9-09cf666fda27&wid=MCO3376829776&sid=offers'
     },
     {
-        id: 20,
+        id: 15,
+        nombre: 'Mega Gainer 5lbs Hipercalorica Vainilla',
+        precio: 136000,
+        categoria: 'mercadolibre',
+        imagen: 'https://http2.mlstatic.com/D_NQ_NP_2X_856384-MCO92681536017_092025-F.webp',
+        link: 'https://www.mercadolibre.com.co/mega-gainer--5lbs--hipercalorica-gmn/up/MCOU3230069220#polycard_client=search-desktop&search_layout=grid&position=3&type=product&tracking_id=0b7143ea-fc46-4894-8473-452af4cde90e&wid=MCO1598153159&sid=search'
+    },
+    {
+        id: 16,
         nombre: 'Mat Yoga Colchoneta Tapete Ejercicio',
         precio: 100000,
         categoria: 'mercadolibre',
@@ -173,7 +141,7 @@ const PRODUCTOS = [
         link: 'https://www.mercadolibre.com.co/mat-yoga-colchoneta-tapete-ejercicio-6mm-bolsocorrea-guias-color-negro/p/MCO28690468#polycard_client=offers&deal_print_id=a660d57a-fe3c-4c71-a62c-65ee0d744f5a&tracking_id=7dcc6402-8f4c-4027-b6bd-8626d8de0ed8&wid=MCO1370924407&sid=offers'
     },
     {
-        id: 21,
+        id: 17,
         nombre: 'Bascula Personal Inteligente Bluetooth Balanza Digital De Peso',
         precio: 66000,
         categoria: 'mercadolibre',
@@ -181,7 +149,7 @@ const PRODUCTOS = [
         link: 'https://www.mercadolibre.com.co/femmto-bascula-de-peso-corporal-bcs15-negro-15v/p/MCO19147005?product_trigger_id=MCO21361039&picker=true&quantity=1'
     },
       {
-        id: 22,
+        id: 18,
         nombre: 'Tenis de entrenamiento Dropset Control',
         precio: 460000,
         categoria: 'adidas',
@@ -189,7 +157,7 @@ const PRODUCTOS = [
         link: 'https://www.adidas.co/tenis-de-entrenamiento-dropset-control/JQ1444.html?forceSelSize=US+9'
       },
       {
-        id: 23,
+        id: 19,
         nombre: 'Tenis de entrenamiento Dropset Control',
         precio: 460000,
         categoria: 'adidas',
@@ -197,7 +165,7 @@ const PRODUCTOS = [
         link: 'https://www.adidas.co/tenis-de-entrenamiento-dropset-control/JS3036.html'
       },
       {
-        id: 24,
+        id: 20,
         nombre: 'Tenis Rapidmove Go M',
         precio: 360000,
         categoria: 'adidas',
@@ -205,19 +173,11 @@ const PRODUCTOS = [
         link: 'https://www.adidas.co/tenis-rapidmove-go-m/JQ3950.html'
       },
       {
-        id: 25,
+        id: 21,
         nombre: 'Tenis Rapidmove Go M',
         precio: 360000,
         categoria: 'adidas',
         imagen: 'https://assets.adidas.com/images/h_2000,f_auto,q_auto,fl_lossy,c_fill,g_auto/cce80c75406742d4b7ae89fb0b9b9d5a_9366/Tenis_Rapidmove_Go_M_Blanco_JQ1461_HM1.jpg',
         link: 'https://www.adidas.co/tenis-rapidmove-go-m/JQ1461.html'
       },
-    {
-        id: 26,
-        nombre: 'Closet (Relleno)',
-        precio: 12000000,
-        categoria: 'unknown',
-        imagen: 'https://http2.mlstatic.com/D_NQ_NP_2X_736103-MCO97519707232_112025-F.webp',
-        link: 'https://www.mercadolibre.com.co/closet-siruela-200-milan-y-wengue--gran-almacenamiento/up/MCOU3558177998#polycard_client=recommendations_pdp-v2p&reco_backend=ranker_retrieval_system_org&reco_model=coldstart_low_exposition&reco_client=pdp-v2p&reco_item_pos=1&reco_backend_type=low_level&reco_id=02be40ff-9a56-45fb-a385-ef9bdd779f1c&wid=MCO1727581517&sid=recos'
-    },
 ];
