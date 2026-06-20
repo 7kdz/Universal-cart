@@ -1,4 +1,3 @@
-https://www.instagram.com/androvende_/
 // productos.js
 const PRODUCTOS = [
     /*
@@ -125,7 +124,7 @@ const PRODUCTOS = [
         imagen: 'https://guayosbogotop.com/cdn/shop/files/F3277EBF-0522-4069-824E-967174E9467E.jpg?v=1767458190&width=823',
         link: 'https://guayosbogotop.com/products/licra_5'
       },
-                  {
+      {
         id: 15,
         nombre: 'Maleta Deportiva Linear Mediana',
         precio: 180000,
