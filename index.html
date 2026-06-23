@@ -1,372 +1,427 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Wishlist</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<script src="./data.js"></script>
+    <meta name="color-scheme" content="light dark" />
 
-<style>
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  font-family:'Inter',sans-serif;
-}
+    <title>Wishlist</title>
 
-:root{
-  --bg:#f7f7f7;
-  --card:#ffffff;
-  --border:#e8e8e8;
-  --text:#111;
-  --muted:#777;
-}
+    <link rel="stylesheet" href="./styles.css" />
 
-body{
-  background:var(--bg);
-  color:var(--text);
-  padding:24px;
-}
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="./data.js"></script>
+  </head>
 
-.wrapper{
-  max-width:1300px;
-  margin:auto;
-}
+  <body>
+    <div class="wrapper">
+      <header>
+        <div class="title">
+          <h1>Wishlist</h1>
+          <p>Lista personal de compras y objetivos.</p>
+        </div>
 
-header{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:16px;
-  margin-bottom:24px;
-}
+        <div class="controls">
+          <input
+            class="search"
+            id="searchInput"
+            type="text"
+            placeholder="Buscar producto..."
+          />
 
-.title h1{
-  font-size:2rem;
-  font-weight:700;
-}
+          <select id="categoryFilter">
+            <option value="all">Todos</option>
+            <option value="glauser">Glauser</option>
+            <option value="mercadolibre">MercadoLibre</option>
+            <option value="amazon">Amazon</option>
+            <option value="apple">Apple</option>
+            <option value="adidas">Adidas</option>
+            <option value="nike">Nike</option>
+            <option value="unknown">Desconocido</option>
+          </select>
+        </div>
+      </header>
 
-.title p{
-  color:var(--muted);
-  margin-top:4px;
-}
+      <div class="stats">
+        <div class="stat">
+          <span>Productos visibles</span>
+          <strong id="visibleProducts">0</strong>
+        </div>
 
-.controls{
-  display:flex;
-  gap:12px;
-  flex-wrap:wrap;
-}
+        <div class="stat">
+          <span>Valor total</span>
+          <strong id="statsTotal">$0</strong>
+        </div>
 
-input,select{
-  border:1px solid var(--border);
-  background:white;
-  border-radius:12px;
-  padding:12px 14px;
-  font-size:.95rem;
-}
+        <div class="stat">
+          <span>Categoría</span>
+          <strong id="currentCategory">Todas</strong>
+        </div>
+      </div>
 
-.search{
-  min-width:260px;
-}
+      <div class="cart-container" id="cart"></div>
 
-.stats{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
-  gap:16px;
-  margin-bottom:24px;
-}
+      <div class="checkout">
+        <div class="total" id="totalAmount">Total: $0</div>
+        <button class="checkout-btn">Ver objetivos</button>
+      </div>
+    </div>
 
-.stat{
-  background:var(--card);
-  border:1px solid var(--border);
-  border-radius:18px;
-  padding:18px;
-}
+    <div id="productModal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <div id="modalTitle" class="modal-title">Productos</div>
 
-.stat span{
-  color:var(--muted);
-  font-size:.85rem;
-}
+          <button id="closeModalBtn" class="modal-close" aria-label="Cerrar">
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path d="M18 6L6 18" />
+              <path d="M6 6L18 18" />
+            </svg>
+          </button>
+        </div>
 
-.stat strong{
-  display:block;
-  margin-top:6px;
-  font-size:1.3rem;
-}
+        <div class="modal-body">
+          <div id="modalProducts" class="modal-products"></div>
+        </div>
+      </div>
+    </div>
 
-.cart-container{
-  display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(260px,1fr));
-  gap:20px;
-}
+    <script>
+      const cart = document.getElementById("cart");
+      const filter = document.getElementById("categoryFilter");
+      const searchInput = document.getElementById("searchInput");
 
-.cart-item{
-  background:var(--card);
-  border:1px solid var(--border);
-  border-radius:20px;
-  padding:16px;
-  cursor:pointer;
-  transition:.25s ease;
-}
+      const totalDisplay = document.getElementById("totalAmount");
+      const statsTotal = document.getElementById("statsTotal");
+      const visibleProducts = document.getElementById("visibleProducts");
+      const currentCategory = document.getElementById("currentCategory");
 
-.cart-item:hover{
-  transform:translateY(-4px);
-  box-shadow:0 12px 30px rgba(0,0,0,.06);
-}
+      const productos = PRODUCTOS;
 
-.item-image{
-  width:100%;
-  height:220px;
-  object-fit:contain;
-  background:#fafafa;
-  border-radius:14px;
-  padding:10px;
-  margin-bottom:14px;
-}
+      /*
+  Agrupa productos aquí
+*/
+      const PRODUCT_GROUPS = [
+        {
+          nombre: "AirPods",
+          productos: [3, 4],
+          collage: false,
+        },
+        {
+          nombre: "Licras",
+          productos: [13, 14],
+          collage: false,
+        },
+        {
+          nombre: "Tenis de entrenamiento Dropset Control",
+          productos: [22, 23],
+          collage: false,
+        },
+        {
+          nombre: "Tenis Rapidmove Go M",
+          productos: [24, 25],
+          collage: false,
+        },
+        {
+          nombre: "Guayos F50",
+          productos: [9, 10],
+          collage: false,
+        },
+        {
+          nombre: "Joma",
+          productos: [11, 12],
+          collage: false,
+        },
+      ];
 
-.item-title{
-  font-size:1rem;
-  font-weight:600;
-  line-height:1.4;
-  margin-bottom:10px;
-}
+      const modal = document.getElementById("productModal");
+      const modalProducts = document.getElementById("modalProducts");
+      const modalTitle = document.getElementById("modalTitle");
 
-.item-source{
-  display:inline-block;
-  padding:5px 10px;
-  border-radius:999px;
-  background:#f2f2f2;
-  color:#666;
-  font-size:.75rem;
-  margin-bottom:12px;
-  text-transform:capitalize;
-}
+      function openModal() {
+        modal.classList.add("active");
+        document.body.classList.add("modal-open");
+      }
 
-.item-price{
-  font-size:1.05rem;
-  font-weight:700;
-}
+      function closeModal() {
+        modal.classList.remove("active");
+        document.body.classList.remove("modal-open");
+      }
 
-.checkout{
-  position:sticky;
-  bottom:20px;
-  margin-top:30px;
-  background:white;
-  border:1px solid var(--border);
-  border-radius:20px;
-  padding:18px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:16px;
-box-shadow: 0 8px 24px rgba(0,0,0,.06);
-}
+      document
+        .getElementById("closeModalBtn")
+        .addEventListener("click", closeModal);
 
-.total{
-  font-size:1.3rem;
-  font-weight:700;
-}
+      modal.addEventListener("click", (e) => {
+        if (e.target === modal) {
+          closeModal();
+        }
+      });
 
-.checkout-btn{
-  border:none;
-  background:#111;
-  color:white;
-  padding:12px 20px;
-  border-radius:12px;
-  cursor:pointer;
-}
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") {
+          closeModal();
+        }
+      });
 
-.checkout-btn:hover{
-  opacity:.9;
-}
+      function formatCurrency(value) {
+        return new Intl.NumberFormat("es-CO", {
+          style: "currency",
+          currency: "COP",
+        }).format(value);
+      }
 
-@media(max-width:700px){
-  body{
-    padding:16px;
-  }
+      function openGroup(group) {
+        modalTitle.textContent = group.nombre;
 
-  header{
-    flex-direction:column;
-    align-items:stretch;
-  }
+        modalProducts.innerHTML = "";
 
-  .controls{
-    flex-direction:column;
-  }
+        group.productos.forEach((id) => {
+          const product = productos.find((p) => p.id === id);
 
-  .search{
-    min-width:auto;
-  }
+          if (!product) return;
 
-  .checkout{
-    flex-direction:column;
-    text-align:center;
-  }
+          const card = document.createElement("div");
 
-  .checkout-btn{
-    width:100%;
-  }
-}
-</style>
-</head>
-<body>
+          card.className = "cart-item";
 
-<div class="wrapper">
+          card.innerHTML = `
+      <img
+        src="${product.imagen}"
+        alt="${product.nombre}"
+        class="item-image"
+      >
 
-<header>
-  <div class="title">
-    <h1>Wishlist</h1>
-    <p>Lista personal de compras y objetivos.</p>
-  </div>
+      <div class="item-title">
+        ${product.nombre}
+      </div>
 
-  <div class="controls">
-    <input class="search" id="searchInput" type="text" placeholder="Buscar producto...">
+      <div class="item-source">
+        ${product.categoria}
+      </div>
 
-    <select id="categoryFilter">
-      <option value="all">Todos</option>
-      <option value="glauser">Glauser</option>
-      <option value="mercadolibre">MercadoLibre</option>
-      <option value="amazon">Amazon</option>
-      <option value="apple">Apple</option>
-      <option value="adidas">Adidas</option>
-      <option value="nike">Nike</option>
-      <option value="unknown">Desconocido</option>
-    </select>
-  </div>
-</header>
+      <div class="item-price">
+        ${formatCurrency(product.precio)}
+      </div>
+    `;
 
-<div class="stats">
-  <div class="stat">
-    <span>Productos visibles</span>
-    <strong id="visibleProducts">0</strong>
-  </div>
+          card.addEventListener("click", () => {
+            window.open(product.link, "_blank");
+          });
 
-  <div class="stat">
-    <span>Valor total</span>
-    <strong id="statsTotal">$0</strong>
-  </div>
+          modalProducts.appendChild(card);
+        });
 
-  <div class="stat">
-    <span>Categoría</span>
-    <strong id="currentCategory">Todas</strong>
-  </div>
-</div>
+        openModal();
+      }
 
-<div class="cart-container" id="cart"></div>
+      function createCartItem(product) {
+        const item = document.createElement("div");
 
-<div class="checkout">
-  <div class="total" id="totalAmount">Total: $0</div>
-  <button class="checkout-btn">Ver objetivos</button>
-</div>
+        item.className = "cart-item";
 
-</div>
+        item.dataset.source = product.categoria;
 
-<script>
-const cart = document.getElementById('cart');
-const filter = document.getElementById('categoryFilter');
-const searchInput = document.getElementById('searchInput');
+        item.dataset.price = product.precio;
 
-const totalDisplay = document.getElementById('totalAmount');
-const statsTotal = document.getElementById('statsTotal');
-const visibleProducts = document.getElementById('visibleProducts');
-const currentCategory = document.getElementById('currentCategory');
+        item.dataset.name = product.nombre.toLowerCase();
 
-const productos = PRODUCTOS;
+        item.innerHTML = `
+    <img
+      src="${product.imagen}"
+      alt="${product.nombre}"
+      class="item-image"
+    >
 
-function formatCurrency(value){
-  return new Intl.NumberFormat('es-CO',{
-    style:'currency',
-    currency:'COP'
-  }).format(value);
-}
+    <div class="item-title">
+      ${product.nombre}
+    </div>
 
-function createCartItem(product){
-  const item = document.createElement('div');
+    <div class="item-source">
+      ${product.categoria}
+    </div>
 
-  item.className = 'cart-item';
-  item.dataset.source = product.categoria;
-  item.dataset.price = product.precio;
-  item.dataset.name = product.nombre.toLowerCase();
-
-  item.innerHTML = `
-    <img src="${product.imagen}" alt="${product.nombre}" class="item-image">
-    <div class="item-title">${product.nombre}</div>
-    <div class="item-source">${product.categoria}</div>
-    <div class="item-price">${formatCurrency(product.precio)}</div>
+    <div class="item-price">
+      ${formatCurrency(product.precio)}
+    </div>
   `;
 
-  item.addEventListener('click',()=>{
-    window.open(product.link,'_blank');
-  });
+        item.addEventListener("click", () => {
+          window.open(product.link, "_blank");
+        });
 
-  return item;
-}
+        return item;
+      }
 
-function renderCart(){
-  const fragment = document.createDocumentFragment();
+      function createGroupCard(group) {
+        const first = productos.find((p) => p.id === group.productos[0]);
 
-  productos.forEach(product=>{
-    fragment.appendChild(createCartItem(product));
-  });
+        const item = document.createElement("div");
 
-  cart.appendChild(fragment);
-}
+        item.className = "cart-item";
 
-function updateCartDisplay(){
-  const items = document.querySelectorAll('.cart-item');
+        item.dataset.source = first.categoria;
 
-  const selected = filter.value;
-  const search = searchInput.value.toLowerCase().trim();
+        item.dataset.price = Math.min(
+          ...group.productos.map((id) => {
+            const p = productos.find((x) => x.id === id);
 
-  let total = 0;
-  let count = 0;
+            return p.precio;
+          }),
+        );
 
-  items.forEach(item=>{
+        item.dataset.count = group.productos.length;
 
-    const categoryMatch =
-      selected === 'all' ||
-      item.dataset.source === selected;
+        item.dataset.name = group.nombre.toLowerCase();
 
-    const searchMatch =
-      item.dataset.name.includes(search);
+        let imageHTML = "";
 
-    const visible =
-      categoryMatch && searchMatch;
+        if (group.collage && group.productos.length >= 2) {
+          const p1 = productos.find((p) => p.id === group.productos[0]);
 
-    item.style.display =
-      visible ? 'block' : 'none';
+          const p2 = productos.find((p) => p.id === group.productos[1]);
 
-    if(visible){
-      total += Number(item.dataset.price);
-      count++;
-    }
-  });
+          imageHTML = `
+      <div class="group-image">
 
-  totalDisplay.textContent =
-    `Total: ${formatCurrency(total)}`;
+        <img
+          src="${p1.imagen}"
+          alt="${p1.nombre}"
+        >
 
-  statsTotal.textContent =
-    formatCurrency(total);
+        <img
+          src="${p2.imagen}"
+          alt="${p2.nombre}"
+        >
 
-  visibleProducts.textContent =
-    count;
+      </div>
+    `;
+        } else {
+          imageHTML = `
+      <div style="position:relative">
 
-  currentCategory.textContent =
-    selected === 'all'
-      ? 'Todas'
-      : selected;
-}
+        <img
+          src="${first.imagen}"
+          class="item-image"
+        >
 
-filter.addEventListener('change', updateCartDisplay);
-searchInput.addEventListener('input', updateCartDisplay);
+      </div>
+    `;
+        }
 
-window.addEventListener('DOMContentLoaded',()=>{
-  renderCart();
-  updateCartDisplay();
-});
-</script>
+        item.innerHTML = `
+    ${imageHTML}
 
-</body>
+    <div class="item-title">
+      ${group.nombre}
+    </div>
+
+    <div class="item-source">
+      ${group.productos.length}
+      variantes disponibles
+    </div>
+
+    <div class="item-price">
+      Desde
+      ${formatCurrency(Number(item.dataset.price))}
+    </div>
+  `;
+
+        item.addEventListener("click", () => {
+          openGroup(group);
+        });
+
+        return item;
+      }
+
+      function renderCart() {
+        cart.innerHTML = "";
+
+        const groupedIds = new Set();
+
+        productos.forEach((product) => {
+          const group = PRODUCT_GROUPS.find(
+            (g) => g.productos[0] === product.id,
+          );
+
+          if (group) {
+            cart.appendChild(createGroupCard(group));
+
+            group.productos.forEach((id) => {
+              if (id !== product.id) {
+                groupedIds.add(id);
+              }
+            });
+
+            return;
+          }
+
+          if (groupedIds.has(product.id)) {
+            return;
+          }
+
+          cart.appendChild(createCartItem(product));
+        });
+      }
+
+      function updateCartDisplay() {
+        const items = document.querySelectorAll("#cart .cart-item");
+
+        const selected = filter.value;
+
+        const search = searchInput.value.toLowerCase().trim();
+
+        let total = 0;
+        let count = 0;
+
+        items.forEach((item) => {
+          const categoryMatch =
+            selected === "all" || item.dataset.source === selected;
+
+          const searchMatch = item.dataset.name.includes(search);
+
+          const visible = categoryMatch && searchMatch;
+
+          item.style.display = visible ? "block" : "none";
+
+          if (visible) {
+            total += Number(item.dataset.price);
+
+            count += Number(item.dataset.count || 1);
+          }
+        });
+
+        totalDisplay.textContent = `Total: ${formatCurrency(total)}`;
+
+        statsTotal.textContent = formatCurrency(total);
+
+        visibleProducts.textContent = count;
+
+        currentCategory.textContent =
+          selected === "all"
+            ? "Todas"
+            : selected.charAt(0).toUpperCase() + selected.slice(1);
+      }
+
+      filter.addEventListener("change", updateCartDisplay);
+
+      searchInput.addEventListener("input", updateCartDisplay);
+
+      window.addEventListener("DOMContentLoaded", () => {
+        renderCart();
+        updateCartDisplay();
+      });
+    </script>
+  </body>
 </html>
