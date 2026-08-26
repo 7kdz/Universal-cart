@@ -37,11 +37,12 @@
             <option value="all">Todos</option>
             <option value="glauser">Glauser</option>
             <option value="mercadolibre">MercadoLibre</option>
-            <option value="amazon">Amazon</option>
             <option value="apple">Apple</option>
             <option value="adidas">Adidas</option>
-            <option value="nike">Nike</option>
-            <option value="unknown">Desconocido</option>
+            <option value="honda">Honda</option>
+            <option value="jbl">JBL</option>
+            <option value="hp">HP</option>
+            <option value="unknown">No original</option>
           </select>
         </div>
       </header>
@@ -182,6 +183,21 @@
         }).format(value);
       }
 
+      const CATEGORY_LABELS = {
+        all: "Todas",
+        glauser: "Glauser",
+        mercadolibre: "MercadoLibre",
+        apple: "Apple",
+        adidas: "Adidas",
+        honda: "Honda",
+        jbl: "JBL",
+        hp: "HP",
+        unknown: "No original",
+      };
+
+      const PLACEHOLDER_IMAGE =
+        "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220' viewBox='0 0 220 220'%3E%3Crect width='220' height='220' fill='%23eeeeee'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' dominant-baseline='middle' fill='%23999999' font-family='sans-serif' font-size='14'%3EImagen no disponible%3C/text%3E%3C/svg%3E";
+
       function openGroup(group) {
         modalTitle.textContent = group.nombre;
 
@@ -201,6 +217,7 @@
         src="${product.imagen}"
         alt="${product.nombre}"
         class="item-image"
+        onerror="this.onerror=null;this.src='${PLACEHOLDER_IMAGE}';"
       >
 
       <div class="item-title">
@@ -242,6 +259,7 @@
       src="${product.imagen}"
       alt="${product.nombre}"
       class="item-image"
+      onerror="this.onerror=null;this.src='${PLACEHOLDER_IMAGE}';"
     >
 
     <div class="item-title">
@@ -267,6 +285,13 @@
       function createGroupCard(group) {
         const first = productos.find((p) => p.id === group.productos[0]);
 
+        if (!first) {
+          console.warn(
+            `Grupo "${group.nombre}" referencia un id de producto inexistente.`,
+          );
+          return null;
+        }
+
         const item = document.createElement("div");
 
         item.className = "cart-item";
@@ -280,8 +305,6 @@
             return p.precio;
           }),
         );
-
-        item.dataset.count = group.productos.length;
 
         item.dataset.name = group.nombre.toLowerCase();
 
@@ -298,11 +321,13 @@
         <img
           src="${p1.imagen}"
           alt="${p1.nombre}"
+          onerror="this.onerror=null;this.src='${PLACEHOLDER_IMAGE}';"
         >
 
         <img
           src="${p2.imagen}"
           alt="${p2.nombre}"
+          onerror="this.onerror=null;this.src='${PLACEHOLDER_IMAGE}';"
         >
 
       </div>
@@ -313,7 +338,9 @@
 
         <img
           src="${first.imagen}"
+          alt="${first.nombre}"
           class="item-image"
+          onerror="this.onerror=null;this.src='${PLACEHOLDER_IMAGE}';"
         >
 
       </div>
@@ -356,7 +383,11 @@
           );
 
           if (group) {
-            cart.appendChild(createGroupCard(group));
+            const groupCard = createGroupCard(group);
+
+            if (groupCard) {
+              cart.appendChild(groupCard);
+            }
 
             group.productos.forEach((id) => {
               if (id !== product.id) {
@@ -398,7 +429,7 @@
           if (visible) {
             total += Number(item.dataset.price);
 
-            count += Number(item.dataset.count || 1);
+            count += 1;
           }
         });
 
@@ -408,10 +439,7 @@
 
         visibleProducts.textContent = count;
 
-        currentCategory.textContent =
-          selected === "all"
-            ? "Todas"
-            : selected.charAt(0).toUpperCase() + selected.slice(1);
+        currentCategory.textContent = CATEGORY_LABELS[selected] || selected;
       }
 
       filter.addEventListener("change", updateCartDisplay);
