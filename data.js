@@ -16,7 +16,7 @@ const PRODUCTOS = [
     id: 1,
     nombre: "Honda XR 190L",
     precio: 14000000,
-    categoria: "unknown",
+    categoria: "honda",
     imagen: "https://motos.honda.com.co/images/cms/xr-190l-abs-rojo.png",
     link: "https://motos.honda.com.co/motos-honda/todo-terreno/XR-190L-20",
   },
@@ -51,7 +51,7 @@ const PRODUCTOS = [
     id: 5,
     nombre: 'Computador Portátil Gamer HP VICTUS 15.6" Fa2014la',
     precio: 2700000,
-    categoria: "unknown",
+    categoria: "hp",
     imagen:
       "https://www.ktronix.com/medias/198990788456-001-750Wx750H?context=bWFzdGVyfGltYWdlc3wyOTM5OHxpbWFnZS93ZWJwfGFEQTJMMmhrT0M4eE5URTFOek13T1Rrek1UVTFNQzh4T1RnNU9UQTNPRGcwTlRaZk1EQXhYemMxTUZkNE56VXdTQXxkNGNmMzY5NzRiNWUzNmIzMWY5Mzk4N2IyOTQ5MGRhZDliNTkyOWU4NzFjM2RiZTZlMDQxYjE4ODZjYjdiNWY0",
     link: "https://www.ktronix.com/computador-portatil-gamer-hp-victus-156-fa2014la-intel/p/198990788456?algEvent=eyJvYmplY3RJZCI6IjE5ODk5MDc4ODQ1NiIsImluZGV4Ijoia3Ryb25peEluZGV4QWxnb2xpYVBSRCIsImFjdGlvbiI6InZpZXciLCJxdWVyeUlEIjoiMGQ1NzY5YjkxYTQwYTAwNzVhMTA5ODUzMjRhYWQxZWEifQ==",
@@ -60,7 +60,7 @@ const PRODUCTOS = [
     id: 6,
     nombre: "JBL Boombox 4",
     precio: 2000000,
-    categoria: "unknown",
+    categoria: "jbl",
     imagen:
       "https://www.jbl.com.co/dw/image/v2/BFND_PRD/on/demandware.static/-/Sites-masterCatalog_Harman/default/dwa8f12f94/LS_JBL_BOOMBOX_4_HERO_BLACK_0019_x4.png?sw=535&sh=535",
     link: "https://www.jbl.com.co/BOOMBOX-4.html",
