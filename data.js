@@ -83,8 +83,17 @@ const PRODUCTOS = [
       "https://assets.adidas.com/images/h_2000,f_auto,q_auto,fl_lossy,c_fill,g_auto/dbb73d72131545349172627df6f03708_9366/Guayos_F50_Hyperfast_League_sin_Cordones_Terreno_Firme_Blanco_KJ3415_HM1.jpg",
     link: "https://www.adidas.co/guayos-f50-hyperfast-league-sin-cordones-terreno-firme/KJ3415.html",
   },
-  {
+    {
     id: 9,
+    nombre: "Guayos F50 Hyperfast League Pasto Artificial",
+    precio: 480000,
+    categoria: "adidas",
+    imagen:
+      "https://assets.adidas.com/images/h_2000,f_auto,q_auto,fl_lossy,c_fill,g_auto/207434c61a614e91b0beca3a2974e598_9366/Guayos_F50_Hyperfast_League_Pasto_Artificial_Rosa_IH4582_HM1.jpg",
+    link: "https://www.adidas.co/guayos-f50-hyperfast-league-pasto-artificial/IH4582.html",
+  },
+  {
+    id: 10,
     nombre: "Zapatillas Max STREET",
     precio: 130000,
     categoria: "unknown",
@@ -93,7 +102,7 @@ const PRODUCTOS = [
     link: "https://www.maxsport.com.co/collections/zapatillas-max/products/street?variant=48326110937241",
   },
   {
-    id: 10,
+    id: 11,
     nombre: "Licra Adidas Cuello Bajo x 1und",
     precio: 80000,
     categoria: "unknown",
@@ -102,7 +111,7 @@ const PRODUCTOS = [
     link: "https://guayosbogotop.com/products/licra_2",
   },
   {
-    id: 11,
+    id: 12,
     nombre: "Licra Nike Cuello Bajo x 1und",
     precio: 80000,
     categoria: "unknown",
@@ -111,7 +120,7 @@ const PRODUCTOS = [
     link: "https://guayosbogotop.com/products/licra_5",
   },
   {
-    id: 12,
+    id: 13,
     nombre: "Maleta Deportiva Linear Mediana",
     precio: 180000,
     categoria: "adidas",
@@ -120,7 +129,7 @@ const PRODUCTOS = [
     link: "https://www.adidas.co/maleta-deportiva-linear-mediana/JD9555.html?pr=product_rr&slot=4&rec=ds",
   },
   {
-    id: 13,
+    id: 14,
     nombre:
       "Pesas Tobilleras Y Muñequeras 6kg Fitnics Ajustables Set X2 - Negro (X2 Sets)",
     precio: 68000,
@@ -130,7 +139,7 @@ const PRODUCTOS = [
     link: "https://www.mercadolibre.com.co/pesas-tobilleras-y-munequeras-6kg-fitnics-ajustables-set-x2-negro/p/MCO62162919?pdp_filters=item_id%3AMCO1736913431#polycard_client=offers&deal_print_id=7a344ad5-eddc-4f1e-af07-c1bdc6b25de9&position=5&tracking_id=533eb999-ec6a-4d57-b099-87a28a393abb&wid=MCO1736913431&sid=offers",
   },
   {
-    id: 14,
+    id: 15,
     nombre: "Corrector Postura Lumbar Iman Espalda Magnetico 4 Varillas",
     precio: 77000,
     categoria: "mercadolibre",
@@ -139,7 +148,7 @@ const PRODUCTOS = [
     link: "https://articulo.mercadolibre.com.co/MCO-860609691-corrector-postura-lumbar-iman-espalda-magnetico-4-varillas-_JM?variation=174205758252#polycard_client=cart_list",
   },
   {
-    id: 15,
+    id: 16,
     nombre: "Creatina Muscletech",
     precio: 140000,
     categoria: "mercadolibre",
@@ -148,7 +157,7 @@ const PRODUCTOS = [
     link: "https://www.mercadolibre.com.co/creatina-muscletech-80-servicios-crecimiento-muscular-fuerza/p/MCO20596216#polycard_client=offers&deal_print_id=e3578848-85ed-4f8d-8c33-b15c373631f3&tracking_id=311f3038-97d2-4bff-90d9-09cf666fda27&wid=MCO3376829776&sid=offers",
   },
   {
-    id: 16,
+    id: 17,
     nombre: "Mega Gainer 5lbs Hipercalorica Vainilla",
     precio: 136000,
     categoria: "mercadolibre",
@@ -157,7 +166,7 @@ const PRODUCTOS = [
     link: "https://www.mercadolibre.com.co/mega-gainer--5lbs--hipercalorica-gmn/up/MCOU3230069220#polycard_client=search-desktop&search_layout=grid&position=3&type=product&tracking_id=0b7143ea-fc46-4894-8473-452af4cde90e&wid=MCO1598153159&sid=search",
   },
   {
-    id: 17,
+    id: 18,
     nombre: "Mat Yoga Colchoneta Tapete Ejercicio",
     precio: 100000,
     categoria: "mercadolibre",
@@ -166,7 +175,7 @@ const PRODUCTOS = [
     link: "https://www.mercadolibre.com.co/mat-yoga-colchoneta-tapete-ejercicio-6mm-bolsocorrea-guias-color-negro/p/MCO28690468#polycard_client=offers&deal_print_id=a660d57a-fe3c-4c71-a62c-65ee0d744f5a&tracking_id=7dcc6402-8f4c-4027-b6bd-8626d8de0ed8&wid=MCO1370924407&sid=offers",
   },
   {
-    id: 18,
+    id: 19,
     nombre: "Bascula Personal Inteligente Bluetooth Balanza Digital De Peso",
     precio: 66000,
     categoria: "mercadolibre",
@@ -175,7 +184,7 @@ const PRODUCTOS = [
     link: "https://www.mercadolibre.com.co/femmto-bascula-de-peso-corporal-bcs15-negro-15v/p/MCO19147005?product_trigger_id=MCO21361039&picker=true&quantity=1",
   },
   {
-    id: 19,
+    id: 20,
     nombre: "Tenis de entrenamiento Dropset Control",
     precio: 460000,
     categoria: "adidas",
@@ -184,7 +193,7 @@ const PRODUCTOS = [
     link: "https://www.adidas.co/tenis-de-entrenamiento-dropset-control/JQ1444.html?forceSelSize=US+9",
   },
   {
-    id: 20,
+    id: 21,
     nombre: "Tenis de entrenamiento Dropset Control",
     precio: 460000,
     categoria: "adidas",
@@ -193,7 +202,7 @@ const PRODUCTOS = [
     link: "https://www.adidas.co/tenis-de-entrenamiento-dropset-control/JS3036.html",
   },
   {
-    id: 21,
+    id: 22,
     nombre: "Tenis Rapidmove Go M",
     precio: 360000,
     categoria: "adidas",
@@ -202,7 +211,7 @@ const PRODUCTOS = [
     link: "https://www.adidas.co/tenis-rapidmove-go-m/JQ3950.html",
   },
   {
-    id: 22,
+    id: 23,
     nombre: "Tenis Rapidmove Go M",
     precio: 360000,
     categoria: "adidas",
