@@ -17,7 +17,7 @@ const PRODUCTOS = [
     nombre: "Honda XR 190L",
     precio: 14000000,
     categoria: "honda",
-    imagen: "https://motos.honda.com.co/images/cms/xr-190l-abs-rojo.png",
+    imagen: "https://d3lewjhzzgclom.cloudfront.net/sites/default/files/csv_import/images/xr-190l-abs-rojo_3.png",
     link: "https://motos.honda.com.co/motos-honda/todo-terreno/XR-190L-20",
   },
   {
